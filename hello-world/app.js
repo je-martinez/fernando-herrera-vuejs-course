@@ -12,6 +12,15 @@ const app = Vue.createApp({
       message: "It's a beautiful day.",
     };
   },
+  methods: {
+    changeMessage() {
+      this.message = "It's a beautiful evening.";
+      this.toCapitalize();
+    },
+    toCapitalize() {
+      this.message = this.message.toUpperCase();
+    },
+  },
 });
 
 app.mount("#myApp");
