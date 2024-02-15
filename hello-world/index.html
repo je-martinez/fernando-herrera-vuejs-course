@@ -8,9 +8,18 @@
   </head>
   <body>
     <div id="myApp">
-      <h1>{{title}}</h1>
-      <p>{{message}}</p>
-      <button v-on:click="changeMessage">Change Message</button>
+      <h1>Batman Quotes</h1>
+      <div>
+        <p>{{newQuote}}</p>
+      </div>
+      <input type="text" v-model="newQuote" v-on:keypress.enter="addQuote" />
+      <hr />
+      <ul>
+        <li v-for="({quote, author}, index) in quotes">
+          <span>{{index+1}} {{quote}}</span>
+          <blockquote v-if="author">-{{author}}</blockquote>
+        </li>
+      </ul>
     </div>
     <script src="app.js"></script>
   </body>
