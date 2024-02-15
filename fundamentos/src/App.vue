@@ -1,6 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <Counter />
+  <Counter title="Entraron" :start="100" />
+  <Counter title="Hola" :start="5" />
 </template>
 
 <script>
