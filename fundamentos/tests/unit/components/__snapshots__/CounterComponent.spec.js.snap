@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Counter.vue renders props.title when passed: new message 1`] = `
+<h2>new message</h2>
+<p>0 <sup>2</sup> = 0</p>
+<div><button>+1</button><button>-1</button></div>
+`;
