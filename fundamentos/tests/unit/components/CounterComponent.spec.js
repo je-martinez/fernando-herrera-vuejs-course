@@ -44,4 +44,10 @@ describe("Counter.vue", () => {
     const text = wrapper.find(`[data-testid="counter"]`);
     expect(text.text()).toBe("-1");
   });
+
+  it("should match with default value", () => {
+    const { start } = wrapper.props();
+    const text = wrapper.find(`[data-testid="counter"]`);
+    expect(text.text()).toBe(start.toString());
+  });
 });
