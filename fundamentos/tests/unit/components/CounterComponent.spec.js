@@ -50,4 +50,15 @@ describe("Counter.vue", () => {
     const text = wrapper.find(`[data-testid="counter"]`);
     expect(text.text()).toBe(start.toString());
   });
+
+  it("should match with props value", () => {
+    const title = "hello";
+    const wrapper = shallowMount(Counter, {
+      props: {
+        title,
+      },
+    });
+    const titleEl = wrapper.find(`h2`);
+    expect(titleEl.text()).toBe(title);
+  });
 });
