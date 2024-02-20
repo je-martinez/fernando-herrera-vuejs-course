@@ -2,7 +2,11 @@ import { shallowMount } from "@vue/test-utils";
 import Counter from "@/components/CounterComponent.vue";
 
 describe("Counter.vue", () => {
-  const wrapper = shallowMount(Counter);
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallowMount(Counter);
+  });
+
   it("renders props.msg be default value", () => {
     // const msg = undefined;
     // const wrapper = shallowMount(Counter, {
@@ -38,6 +42,6 @@ describe("Counter.vue", () => {
     const decrementButton = wrapper.find("#decrement-btn");
     await decrementButton.trigger("click");
     const text = wrapper.find(`[data-testid="counter"]`);
-    expect(text.text()).toBe("0");
+    expect(text.text()).toBe("-1");
   });
 });
