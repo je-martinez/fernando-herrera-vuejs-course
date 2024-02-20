@@ -36,4 +36,20 @@ describe("Counter.vue", () => {
 
     // expect(wrapper.text()).toMatch(msg);
   });
+
+  it("should increment the counter", async () => {
+    const wrapper = shallowMount(Counter);
+    const incrementButton = wrapper.find("#increment-btn");
+    await incrementButton.trigger("click");
+    const text = wrapper.find(`[data-testid="counter"]`);
+    expect(text.text()).toBe("1");
+  });
+
+  it("should decrement the counter", async () => {
+    const wrapper = shallowMount(Counter);
+    const decrementButton = wrapper.find("#decrement-btn");
+    await decrementButton.trigger("click");
+    const text = wrapper.find(`[data-testid="counter"]`);
+    expect(text.text()).toBe("-1");
+  });
 });
