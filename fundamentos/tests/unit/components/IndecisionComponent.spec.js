@@ -48,5 +48,14 @@ describe("IndecisionComponent.vue", () => {
     expect(wrapper.vm.image).toBe("https://yesno.wtf/assets/yes/2.gif");
     expect(wrapper.vm.answer).toBe("Sí");
   });
-  it("should execute getAnswer on failed", async () => {});
+  it("should execute getAnswer on failed", async () => {
+    fetch.mockImplementationOnce(() => Promise.reject("fake error message"));
+    try {
+      await wrapper.vm.getAnswer();
+    } catch (e) {
+      const image = wrapper.find("img");
+      expect(image.exists()).toBeFalsy();
+      expect(wrapper.vm.answer).toBe("Ups! Algo salió mal. Intenta de nuevo.");
+    }
+  });
 });

@@ -23,17 +23,22 @@ export default {
   },
   methods: {
     async getAnswer() {
-      this.answer = "Pensando...";
-      const { answer, image } = await fetch("https://yesno.wtf/api").then(
-        (res) => res.json()
-      );
-      const messages = {
-        yes: "Sí",
-        no: "No",
-        maybe: "Tal vez",
-      };
-      this.answer = messages[answer];
-      this.image = image;
+      try {
+        this.answer = "Pensando...";
+        const { answer, image } = await fetch("https://yesno.wtf/api").then(
+          (res) => res.json()
+        );
+        const messages = {
+          yes: "Sí",
+          no: "No",
+          maybe: "Tal vez",
+        };
+        this.answer = messages[answer];
+        this.image = image;
+      } catch (error) {
+        this.answer = "Ups! Algo salió mal. Intenta de nuevo.";
+        this.img = null;
+      }
     },
   },
   watch: {
