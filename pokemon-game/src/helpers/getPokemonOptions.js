@@ -11,7 +11,6 @@ const getPokemonOptions = async () => {
 };
 
 const getPokemonNames = async ([a, b, c, d]) => {
-  console.log(a, b, c, d);
   const apiCall = [
     pokemonApi.get(`/${a}`),
     pokemonApi.get(`/${b}`),
