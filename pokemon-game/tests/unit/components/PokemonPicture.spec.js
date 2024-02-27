@@ -25,8 +25,9 @@ describe("PokemonPicture Component", () => {
 
   test("should show the pokemon image and the pokemon number", () => {
     const wrapper = setup({ pokemonId: 100, showPokemon: true });
-    const [img1, img2] = wrapper.wrapper.findAll("img");
+    const img1 = wrapper.wrapper.find("img");
     expect(img1.exists()).toBeTruthy();
-    expect(img2).toBeUndefined();
+    expect(img1.classes("hidden-pokemon")).toBeFalsy();
+    expect(img1.classes("fade-in")).toBeTruthy();
   });
 });
