@@ -1,4 +1,4 @@
-import { getPokemons } from "@/helpers/getPokemonOptions";
+import { getPokemonNames, getPokemons } from "@/helpers/getPokemonOptions";
 
 describe("getPokemonOptions", () => {
   test("should return an array of numbers v1", () => {
@@ -20,5 +20,17 @@ describe("getPokemonOptions", () => {
     // Assert
     expect(result).toEqual(expect.arrayContaining(expected));
     expect(result.length).toBe(650);
+  });
+
+  test("should return array with 4 names of pokemons", async () => {
+    const pokemons = [1, 2, 3, 4];
+    const result = await getPokemonNames(pokemons);
+    expect(result.length).toBe(4);
+    expect(result).toEqual([
+      { name: expect.any(String), id: expect.any(Number) },
+      { name: expect.any(String), id: expect.any(Number) },
+      { name: expect.any(String), id: expect.any(Number) },
+      { name: expect.any(String), id: expect.any(Number) },
+    ]);
   });
 });
