@@ -29,4 +29,16 @@ describe("PokemonOptions Component", () => {
     expect(p4.exists()).toBeTruthy();
     expect(p4.text()).toBe("caterpie");
   });
+
+  test('should emit "selection" with the respective id', () => {
+    const [p1, p2, p3, p4] = wrapper.findAll("li");
+
+    p1.trigger("click");
+    p2.trigger("click");
+    p3.trigger("click");
+    p4.trigger("click");
+
+    expect(wrapper.emitted("selection").length).toBe(4);
+    expect(wrapper.emitted("selection")).toEqual([[1], [2], [3], [4]]);
+  });
 });
