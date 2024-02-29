@@ -24,10 +24,10 @@ describe("PokemonPage.vue", () => {
   });
 
   test("should match with the snapshot when pokemonArray is not empty", () => {
-    //Load all the child components
+    //Load all the child components but already rendered as it is
     // mount(PokemonPage, {
 
-    // Load only the parent component
+    // Load only the parent component with components with stubs
     shallowMount(PokemonPage, {
       data() {
         return {
