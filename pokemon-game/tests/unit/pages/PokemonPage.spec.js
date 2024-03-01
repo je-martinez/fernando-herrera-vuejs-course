@@ -1,16 +1,10 @@
 import PokemonPage from "@/pages/PokemonPage.vue";
 import { mount, shallowMount } from "@vue/test-utils";
 import { pokemonArrayMock, pokemonsMock } from "../mocks/pokemons.mock";
-import PokemonPicture from "@/components/PokemonPicture";
-import PokemonOptions from "@/components/PokemonOptions";
 
 describe("PokemonPage.vue", () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = shallowMount(PokemonPage, {});
-  });
-
   test("should match with the snapshot", () => {
+    const wrapper = shallowMount(PokemonPage, {});
     expect(wrapper.html()).toMatchSnapshot();
   });
 
@@ -28,7 +22,7 @@ describe("PokemonPage.vue", () => {
     // mount(PokemonPage, {
 
     // Load only the parent component with components with stubs
-    shallowMount(PokemonPage, {
+    const wrapper = shallowMount(PokemonPage, {
       data() {
         return {
           pokemonArr: pokemonArrayMock,
@@ -72,14 +66,16 @@ describe("PokemonPage.vue", () => {
       },
     });
 
-    await wrapper.vm.checkAnswer(1);
+    wrapper.vm.checkAnswer(1);
+    await wrapper.vm.$nextTick();
     expect(wrapper.find("h2").exists()).toBeTruthy();
     expect(wrapper.vm.showPokemon).toBe(true);
     expect(wrapper.find("h2").text()).toBe(
       `Correcto, es ${pokemonsMock[0].name}`
     );
 
-    await wrapper.vm.checkAnswer(2);
+    wrapper.vm.checkAnswer(2);
+    await wrapper.vm.$nextTick();
     expect(wrapper.find("h2").exists()).toBeTruthy();
     expect(wrapper.vm.showPokemon).toBe(true);
     expect(wrapper.find("h2").text()).toBe(`Oops, era ${pokemonsMock[0].name}`);
