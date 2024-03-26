@@ -8,7 +8,11 @@
               <router-link class="nav-link" to="/">Pokemon List</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/id">Pokemon by ID</router-link>
+              <router-link
+                class="nav-link"
+                :to="{ name: 'pokemon-id', params: { id: 25 } }"
+                >Pokemon by ID</router-link
+              >
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/about">About</router-link>
