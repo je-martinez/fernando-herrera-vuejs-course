@@ -23,7 +23,14 @@ const routes = [
     path: "/about",
     component: AboutPage,
   },
-  { path: "/id", component: PokemonPage },
+  {
+    path: "/:id",
+    name: "pokemon-id",
+    component: PokemonPage,
+    props: (route) => ({
+      id: parseInt(route.params.id),
+    }),
+  },
   { path: "/:pathMatch(.*)*", component: NoFound },
 ];
 
