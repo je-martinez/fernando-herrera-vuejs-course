@@ -17,21 +17,37 @@ const NoFound = () =>
     /* webpackChunkName: "no-found-page" */ "@/modules/shared/pages/NoFound.page"
   );
 
+const PokemonLayout = () =>
+  import(
+    /* webpackChunkName: "pokemon-layout" */ "@/modules/pokemon/layouts/Pokemon.layout"
+  );
+
 const routes = [
-  { path: "/", redirect: "/home" },
-  { path: "/home", name: "home", component: ListPage },
+  { path: "/", redirect: "pokemon" },
   {
-    path: "/about",
-    name: "about",
-    component: AboutPage,
-  },
-  {
-    path: "/pokemon/:id",
-    name: "pokemon-id",
-    component: PokemonPage,
-    props: (route) => ({
-      id: isNaN(route.params.id) ? 1 : parseInt(route.params.id),
-    }),
+    path: "/pokemon",
+    name: "pokemon",
+    component: PokemonLayout,
+    children: [
+      { path: "home", name: "pokemon-home", component: ListPage },
+      {
+        path: "about",
+        name: "pokemon-about",
+        component: AboutPage,
+      },
+      {
+        path: "pokemon-id/:id",
+        name: "pokemon-id",
+        component: PokemonPage,
+        props: (route) => ({
+          id: isNaN(route.params.id) ? 1 : parseInt(route.params.id),
+        }),
+      },
+      {
+        path: "",
+        redirect: { name: "pokemon-home" },
+      },
+    ],
   },
   {
     path: "/:pathMatch(.*)*",
