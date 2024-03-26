@@ -18,20 +18,26 @@ const NoFound = () =>
   );
 
 const routes = [
-  { path: "/", component: ListPage },
+  { path: "/", redirect: "/home" },
+  { path: "/home", name: "home", component: ListPage },
   {
     path: "/about",
+    name: "about",
     component: AboutPage,
   },
   {
-    path: "/:id",
+    path: "/pokemon/:id",
     name: "pokemon-id",
     component: PokemonPage,
     props: (route) => ({
       id: isNaN(route.params.id) ? 1 : parseInt(route.params.id),
     }),
   },
-  { path: "/:pathMatch(.*)*", component: NoFound },
+  {
+    path: "/:pathMatch(.*)*",
+    component: NoFound,
+    //redirect: "/"
+  },
 ];
 
 const router = createRouter({

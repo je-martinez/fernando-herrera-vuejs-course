@@ -4,19 +4,7 @@
       <div class="container">
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <router-link class="nav-link" to="/">Pokemon List</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                class="nav-link"
-                :to="{ name: 'pokemon-id', params: { id: 25 } }"
-                >Pokemon by ID</router-link
-              >
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/about">About</router-link>
-            </li>
+            <CustomLink v-for="link in links" :key="link.to" :link="link" />
           </ul>
         </div>
       </div>
@@ -37,9 +25,38 @@ li {
   margin: 0;
   padding: 0;
 }
-
-.router-link-exact-active {
-  font-weight: bold;
-  color: #42b983;
-}
 </style>
+
+<script>
+import { defineAsyncComponent } from "vue";
+
+export default {
+  data() {
+    return {
+      links: [
+        {
+          to: "/home",
+          name: "Pokemons",
+        },
+        {
+          to: "/50",
+          name: "By ID",
+        },
+        {
+          to: "/about",
+          name: "About",
+        },
+        {
+          to: "https://google.com",
+          name: "Google",
+        },
+      ],
+    };
+  },
+  components: {
+    CustomLink: defineAsyncComponent(() =>
+      import("@/modules/shared/components/CustomLink.vue")
+    ),
+  },
+};
+</script>
