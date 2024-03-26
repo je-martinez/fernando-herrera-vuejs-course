@@ -28,7 +28,7 @@ const routes = [
     name: "pokemon-id",
     component: PokemonPage,
     props: (route) => ({
-      id: parseInt(route.params.id),
+      id: isNaN(route.params.id) ? 1 : parseInt(route.params.id),
     }),
   },
   { path: "/:pathMatch(.*)*", component: NoFound },
