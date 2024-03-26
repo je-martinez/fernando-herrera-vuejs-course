@@ -1,6 +1,10 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-const AboutPage = () =>
+/* -------------------------------------------------------------------------- */
+/*                                   Pokemon                                  */
+/* -------------------------------------------------------------------------- */
+
+const AboutPokemonPage = () =>
   import(
     /* webpackChunkName: "about-page" */ "@/modules/pokemon/pages/About.page.vue"
   );
@@ -22,8 +26,28 @@ const PokemonLayout = () =>
     /* webpackChunkName: "pokemon-layout" */ "@/modules/pokemon/layouts/Pokemon.layout"
   );
 
+/* -------------------------------------------------------------------------- */
+/*                                Dragon Ball Z                               */
+/* -------------------------------------------------------------------------- */
+
+const DbzAbout = () =>
+  import(/* webpackChunkName: "dbz-about" */ "@/modules/dbz/pages/About.page");
+
+const Characters = () =>
+  import(
+    /* webpackChunkName: "characters" */ "@/modules/dbz/pages/Characters.page"
+  );
+
+const DBZLayout = () =>
+  import(
+    /* webpackChunkName: "dbz-layout" */ "@/modules/dbz/layouts/DBZ.layout"
+  );
+
 const routes = [
   { path: "/", redirect: "pokemon" },
+  /* -------------------------------------------------------------------------- */
+  /*                                   Pokemon                                  */
+  /* -------------------------------------------------------------------------- */
   {
     path: "/pokemon",
     name: "pokemon",
@@ -33,7 +57,7 @@ const routes = [
       {
         path: "about",
         name: "pokemon-about",
-        component: AboutPage,
+        component: AboutPokemonPage,
       },
       {
         path: "pokemon-id/:id",
@@ -49,6 +73,9 @@ const routes = [
       },
     ],
   },
+  /* -------------------------------------------------------------------------- */
+  /*                                Dragon Ball Z                               */
+  /* -------------------------------------------------------------------------- */
   {
     path: "/:pathMatch(.*)*",
     component: NoFound,
