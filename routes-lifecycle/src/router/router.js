@@ -40,7 +40,7 @@ const Characters = () =>
 
 const DBZLayout = () =>
   import(
-    /* webpackChunkName: "dbz-layout" */ "@/modules/dbz/layouts/DBZ.layout"
+    /* webpackChunkName: "dbz-layout" */ "@/modules/dbz/layouts/DragonBall.layout"
   );
 
 const routes = [
@@ -48,6 +48,19 @@ const routes = [
   /* -------------------------------------------------------------------------- */
   /*                                   Pokemon                                  */
   /* -------------------------------------------------------------------------- */
+  {
+    path: "/dbz",
+    name: "dbz",
+    component: DBZLayout,
+    children: [
+      { path: "characters", name: "dbz-characters", component: Characters },
+      { path: "about", name: "dbz-about", component: DbzAbout },
+      {
+        path: "",
+        redirect: { name: "dbz-about" },
+      },
+    ],
+  },
   {
     path: "/pokemon",
     name: "pokemon",
